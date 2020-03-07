@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>AnimatedList</title>
+
+<style type="text/css">
+
+</style>
+
+</head>
+
+<body>
+
+<div id="mydiv"></div>
+
+<script type="text/babel">
+
+class AnimatedList extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+        }
+    }
+
+    geser = (event) => {
+
+            anime({
+                targets: '.'+event.target.className,
+                translateX: 20,
+                easing: 'linear',
+                duration: 200,
+            })
+    }
+
+    geserBalik = () => {
+        anime({
+                targets: '.'+event.target.className,
+                translateX: 0,
+                easing: 'linear',
+                duration: 200,
+            })      
+    }
+
+    render(){
+        return(
+            <div  style={styles.body} className="container d-flex align-items-center">
+                <h1>List</h1>
+                <ul class="list-group">
+                    <li className="animatedlist1" onMouseEnter={this.geser} onMouseLeave={this.geserBalik} style={styles.list}>Item 1</li>
+                    <li className="animatedlist2" onMouseEnter={this.geser} onMouseLeave={this.geserBalik} style={styles.list}>Item 2</li>
+                    <li className="animatedlist3" onMouseEnter={this.geser} onMouseLeave={this.geserBalik} style={styles.list}>Item 3</li>
+                    <li className="animatedlist4" onMouseEnter={this.geser} onMouseLeave={this.geserBalik} style={styles.list}>Item 4</li>
+                </ul>
+            </div>
+        )
+    }
+}
+
+var styles = {
+    body:   {
+        margin: 'auto',
+        // textAlign: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+        flexDirection: 'column'
+    },
+
+    list: {
+        textAlign: 'center',
+        backgroundColor: 'orange',
+        borderLeft: 'solid black 5px',
+        minWidth: '200px',
+        padding: 5,
+        listStyleType: 'none'
+    }
+}
+
+
+ReactDOM.render(<AnimatedList/>, document.getElementById('mydiv'))
+</script>
+
+</body>
+</html>
